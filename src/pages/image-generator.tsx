@@ -1,7 +1,7 @@
-import React from "react";
+import { type NextPage } from "next";
 
-const ImageGenerator = () => {
-  return <div>Image Generator</div>;
+const ImageGenerator: NextPage = () => {
+  return <h1>Image Generator</h1>;
 };
 
 export default ImageGenerator;
