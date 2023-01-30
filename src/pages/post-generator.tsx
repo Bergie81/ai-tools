@@ -2,7 +2,12 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import PostDashboard from "../components/PostDashboard";
 
+import { api } from "../utils/api";
+
 const PostGenerator: NextPage = () => {
+  const jobs = api.textGenerator?.jobDescription.useQuery({
+    jobTitle: "Software Engineer",
+  });
   return (
     <>
       <Head>
@@ -18,6 +23,7 @@ const PostGenerator: NextPage = () => {
           </h1>
         </div>
         <PostDashboard />
+        <div>{jobs.data}</div>
       </main>
     </>
   );

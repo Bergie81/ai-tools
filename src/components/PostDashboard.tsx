@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Loader from "./Loader";
+import { api } from "../utils/api";
 
 export default function Dashboard() {
   // STATES
@@ -16,33 +17,45 @@ export default function Dashboard() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
+  //const fetchData = api.textGenerator?.jobDescription;
+
   // EVENT HANDLERS
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsGenerating(true);
+    //setIsGenerating(true);
     try {
-      const res = await fetch("/api/fetchJobDescription", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          jobTitle,
-          industry,
-          keyWords,
-          tone,
-          language,
-          numWords,
-        }),
-      });
+      // const res = await fetch("/api/fetchJobDescription", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     jobTitle,
+      //     industry,
+      //     keyWords,
+      //     tone,
+      //     language,
+      //     numWords,
+      //   }),
+      // });
+
+      // const { data, isLoading } = fetchData.useQuery({
+      //   jobTitle,
+      //   industry,
+      //   keyWords,
+      //   tone,
+      //   language,
+      //   numWords,
+      // });
+      // console.log("data", data);
       setIsGenerating(false);
-      const data = await res.json();
-      setJobDescription(data.jobDescription.trim());
+      //const data = await res.json();
+      //setJobDescription(data.jobDescription.trim());
     } catch (error) {
-      console.log("Error Handle Submit", error);
-      alert(
-        "Something went wrong. Most likely servers are overloaded. Lower Word Count and try again."
-      );
+      console.log(error);
+      // alert(
+      //   "Something went wrong. Most likely servers are overloaded. Lower Word Count and try again."
+      // );
     }
   };
 
@@ -50,6 +63,10 @@ export default function Dashboard() {
     navigator.clipboard.writeText(jobDescription);
     setIsCopied(true);
   };
+
+  // FETCH JOB DESCRIPTION
+  // const { data, isLoading } = api.textGenerator?.jobDescription.useQuery();
+  // console.log("data", data);
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-4 text-dark sm:px-6 lg:px-8">
