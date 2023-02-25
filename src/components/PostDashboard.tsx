@@ -17,7 +17,7 @@ export default function Dashboard() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  //const fetchData = api.textGenerator?.jobDescription;
+  const fetchData = api.textGenerator?.jobDescription;
 
   // EVENT HANDLERS
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,15 +39,15 @@ export default function Dashboard() {
       //   }),
       // });
 
-      // const { data, isLoading } = fetchData.useQuery({
-      //   jobTitle,
-      //   industry,
-      //   keyWords,
-      //   tone,
-      //   language,
-      //   numWords,
-      // });
-      // console.log("data", data);
+      const { data, isLoading } = fetchData.useQuery({
+        jobTitle,
+        industry,
+        keyWords,
+        tone,
+        language,
+        numWords,
+      });
+      console.log("data", data);
       setIsGenerating(false);
       //const data = await res.json();
       //setJobDescription(data.jobDescription.trim());
